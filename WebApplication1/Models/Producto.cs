@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace WebApplication1.Models
+{
+    public class Producto
+    {
+        [Key]
+        [Column(TypeName = "numeric(38, 0)")]
+        public int Id { get; set; }
+        [StringLength(2000)]
+        [Unicode(false)]
+        public string Descripcion { get; set; } = null!;
+        [Column(TypeName = "numeric(38, 0)")]
+        public int Cantidad { get; set; }
+        [StringLength(1000)]
+        [Unicode(false)]
+        public string? Proveedor { get; set; }
+        [Column(TypeName = "numeric(38, 0)")]
+        public int Categoria { get; set; }
+
+    }
+}
