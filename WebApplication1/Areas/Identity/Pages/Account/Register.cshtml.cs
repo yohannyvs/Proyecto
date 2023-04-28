@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -26,6 +27,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<Usuario> _signInManager;
         private readonly UserManager<Usuario> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUserStore<Usuario> _userStore;
         private readonly IUserEmailStore<Usuario> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
@@ -33,12 +35,14 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
         public RegisterModel(
             UserManager<Usuario> userManager,
+            RoleManager<IdentityRole> roleManager,
             IUserStore<Usuario> userStore,
             SignInManager<Usuario> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
@@ -71,6 +75,13 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            /// <summary>
+            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            ///     directly from your code. This API may change or be removed in future releases.
+            /// </summary>
+            [Required]
+            [Display(Name = "Nombre")]
+            public string Nombre { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -114,10 +125,14 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.Nombre = Input.Nombre;              
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                // Asigna un rol de usuario por defecto
+                await _signInManager.UserManager.AddToRoleAsync(user, "User");
 
                 if (result.Succeeded)
                 {

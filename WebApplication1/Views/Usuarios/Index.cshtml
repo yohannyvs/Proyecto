@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Usuario";
+}
+@using WebApplication1.Areas.Identity.Data
+@model ICollection< Usuario >
+
+<div class="text-center">
+    <h1 class="display-4"> Usuario </h1>
+    @if (Model != null && @Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td class="col">@user.Id</td>
+                        <td class="col">@user.Nombre</td>
+                        <td class="col">@user.Email</td>
+                        <td class="col">
+                            <a asp-asp-controller="Usuario" asp-action="Editar" asp-route-id="@user.Id">Editar</a>
+                            <a asp-asp-controller="Usuario" asp-action="Delete" asp-route-id="@user.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

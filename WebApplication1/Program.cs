@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Areas.Identity.Data;
+using WebApplication1.Interfaces;
+using WebApplication1.Repositories;
+using WebApplication1.Repositorio;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("dbContextConnection") ?? throw new InvalidOperationException("Connection string 'dbContextConnection' not found.");
@@ -14,6 +17,8 @@ builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireCo
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+AddScoped();
 
 var app = builder.Build();
 
@@ -39,3 +44,10 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void AddScoped()
+{
+    builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+    builder.Services.AddScoped<IRolRepositorio, RolRepositorio>();
+    builder.Services.AddScoped<IUnidadRepositorio, UnidadRepositorio>();
+}
