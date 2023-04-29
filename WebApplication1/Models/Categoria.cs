@@ -14,5 +14,7 @@ namespace WebApplication1.Models
         public string? Nombre { get; set; }
 
         public string? Descripcion { get; set; }
+
+        public string? ProductId { get; set; }
     }
 }

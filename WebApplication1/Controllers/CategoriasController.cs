@@ -22,7 +22,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Categorias
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Manager, Admin")]
         public async Task<IActionResult> Index()
         {
               return _context.Categorias != null ? 

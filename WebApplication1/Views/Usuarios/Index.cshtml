@@ -8,7 +8,7 @@
 @model ICollection< Usuario >
 
 <div class="text-center">
-    <h1 class="display-4"> Usuario </h1>
+    <h1 class="display-4"> Lista de Usuarios </h1>
     @if (Model != null && @Model.Any())
     {
         <table class="table">
@@ -17,7 +17,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Editar</th>
+                    <th scope="col">Accion</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,8 +28,8 @@
                         <td class="col">@user.Nombre</td>
                         <td class="col">@user.Email</td>
                         <td class="col">
-                            <a asp-asp-controller="Usuario" asp-action="Editar" asp-route-id="@user.Id">Editar</a>
-                            <a asp-asp-controller="Usuario" asp-action="Delete" asp-route-id="@user.Id">Eliminar</a>
+                            <a class="btn btn-primary " asp-asp-controller="Usuario" asp-action="Editar" asp-route-id="@user.Id">Editar</a>
+                            <a class="btn btn-danger" asp-asp-controller="Usuario" asp-action="Delete" asp-route-id="@user.Id">Eliminar</a>
                         </td>
                     </tr>
                 }

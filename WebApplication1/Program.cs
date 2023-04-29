@@ -50,4 +50,6 @@ void AddScoped()
     builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
     builder.Services.AddScoped<IRolRepositorio, RolRepositorio>();
     builder.Services.AddScoped<IUnidadRepositorio, UnidadRepositorio>();
+    builder.Services.AddScoped<IProductoRepositorio, ProductoRepositorio>();
+    builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
 }

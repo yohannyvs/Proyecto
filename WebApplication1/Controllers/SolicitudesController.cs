@@ -60,15 +60,20 @@ namespace WebApplication1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Usuario,IdProducto,Cantidad")] Solicitudes solicitudes)
+        public async Task<IActionResult> Create([Bind("Id,IdProducto,Cantidad")] Solicitudes solicitudes)
         {
-            if (ModelState.IsValid)
-            {
+            string? username = HttpContext.User.Identity.Name;
+            var usuario = _context.Users.FirstOrDefault(u => u.Email == username);
+
+            solicitudes.Usuario = usuario.Id;
+
+            //if (ModelState.IsValid)
+            //{
                 _context.Add(solicitudes);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(solicitudes);
+            //}
+            //return View(solicitudes);
         }
 
         // GET: Solicitudes/Edit/5
@@ -92,16 +97,20 @@ namespace WebApplication1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Usuario,IdProducto,Cantidad")] Solicitudes solicitudes)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdProducto,Cantidad")] Solicitudes solicitudes)
         {
             if (id != solicitudes.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
+            string? username = HttpContext.User.Identity.Name;
+            var usuario = _context.Users.FirstOrDefault(u => u.Email == username);
+
+            solicitudes.Usuario = usuario.Id;
+            //if (ModelState.IsValid)
+            //{
+            try
                 {
                     _context.Update(solicitudes);
                     await _context.SaveChangesAsync();
@@ -118,7 +127,7 @@ namespace WebApplication1.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            //}
             return View(solicitudes);
         }
 

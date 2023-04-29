@@ -1,10 +1,11 @@
-C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\WebApplication1.dll
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\appsettings.json
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\WebApplication1.staticwebassets.runtime.json
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\WebApplication1.exe
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\WebApplication1.deps.json
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\WebApplication1.runtimeconfig.json
+C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\WebApplication1.dll
+C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\WebApplication1.pdb
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\Humanizer.dll
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\MessagePack.dll
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\MessagePack.Annotations.dll
@@ -275,5 +276,4 @@ C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\obj\Deb
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\obj\Debug\net6.0\refint\WebApplication1.dll
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\obj\Debug\net6.0\WebApplication1.pdb
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\obj\Debug\net6.0\WebApplication1.genruntimeconfig.cache
-C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\bin\Debug\net6.0\WebApplication1.pdb
 C:\Users\Personal\Documents\Progra-III\Proyecto\Proyecto\WebApplication1\obj\Debug\net6.0\ref\WebApplication1.dll

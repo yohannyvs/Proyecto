@@ -8,21 +8,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Areas.Identity.Data;
+using WebApplication1.Interfaces;
 using WebApplication1.Models;
+using WebApplication1.Repositorio;
 
 namespace WebApplication1.Controllers
 {
     public class ProductosController : Controller
     {
         private readonly dbContext _context;
+        private readonly IProductoRepositorio _productoRepositorio;
+        private readonly ICategoriaRepositorio _categoriasRepositorio;
 
-        public ProductosController(dbContext context)
+        public ProductosController(dbContext context, IProductoRepositorio unidadRepositorio, ICategoriaRepositorio categoriasRepositorio)
         {
+            _productoRepositorio = unidadRepositorio;
+            _categoriasRepositorio = categoriasRepositorio;
             _context = context;
         }
 
         // GET: Productos
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Manager, Admin")]
         public async Task<IActionResult> Index()
         {
               return _context.Productos != null ? 
@@ -51,13 +57,22 @@ namespace WebApplication1.Controllers
         // GET: Productos/Create
         public IActionResult Create()
         {
+            var categorias = _context.Categorias.ToList();;
+
+            var categoria_Items = categorias.Select(rol =>
+                new SelectListItem(
+                    rol.Nombre,
+                    rol.Id.ToString(),
+                    false)).ToList();
+
             return View();
         }
 
-        // POST: Productos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        //POST: Productos/Create
+        //To protect from overposting attacks, enable the specific properties you want to bind to.
+        //For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+       [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Descripcion,Cantidad,Proveedor,Categoria")] Producto producto)
         {
